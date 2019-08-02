@@ -81,7 +81,8 @@
     
     function outputValue(event){
         // Clears out screen when new number is pressed
-        if (outputScreen.innerText == output){
+        console.log(outputScreen.innerText, firstValue);
+        if (parseFloat(outputScreen.innerText) === parseFloat(firstValue)){
             outputScreen.innerText = "";
         }
         outputScreen.innerText += event.target.numValue;
@@ -100,39 +101,40 @@
         // save operator
         // clear display
 
+    let a;
+    let b;
+    let firstValue;
     function actionButton(event){
-        let a = parseFloat(outputScreen.innerText);
-        let b = memory;
         if (outputScreen.innerText === ""){
             return;
+        } else if (operator === undefined) {
+            memory = outputScreen.innerText;
+            operator = event.target.action;
+            outputScreen.innerText = "";
+            console.log("No operator, storing . .");
+            console.log("Memory: " + memory);
+            console.log("Operator: " + operator);
+            return;
+        } else if (event.target.action === "clearEntry") {
+            outputScreen.innerText = "";
+            console.log("Cleared Entry", "Memory: " + memory, "Operator: " + operator);
+            return;
+        } else if (event.target.action === "clear") {
+            outputScreen.innerText = "";
+            memory = undefined;
+            operator = undefined;
+            console.log("Cleared All", "Memory: " + memory, "Operator: " + operator);
+            return;
         } else if (operator != undefined){
-                
-            }
-            // if (operator === undefined){
-            //     memory = a;
-            //     operator = event.target.action;
-            //     outputScreen.innerText = "";
-            //     return;
-            // } else if (event.target.action != "=" && memory === undefined){
-            //     memory = a;
-            //     outputScreen.innerText = "";
-            //     operator = event.target.action;
-            //     return;
-            // } else if (event.target.action === "clearEntry"){
-            //     outputScreen.innerText = "";
-            //     return;
-            // } else if (event.target.action === "clear"){
-            //     outputScreen.innerText = "";
-            //     memory = undefined;
-            //     operator = undefined;
-            //     output = undefined;
-            //     return;
-            // } else if (memory != undefined && operator != undefined) {
-            //     // operator = event.target.action;
-            //     output = calculate(a,b,operator);
-            //     operator = "=" ? memory = undefined : memory = output;
-            //     outputScreen.innerText = output; 
-            // }
+            a = parseFloat(outputScreen.innerText);
+            b = parseFloat(memory);
+            console.log("b: " + b , "a: " + a, " Operator: " + operator);
+            firstValue = calculate(a,b,operator);
+            console.log("Calculated: " + firstValue);
+            operator = event.target.action;
+            console.log("New operator: " + operator);
+            outputScreen.innerText = firstValue;
+            return;
         }
     }
 
@@ -149,7 +151,8 @@
             case "**":
                 return b**a;
             case "=":
-                return;
+                memory = firstValue;
+                return firstValue;
         }
     }
     
