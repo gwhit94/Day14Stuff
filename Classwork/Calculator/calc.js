@@ -76,8 +76,6 @@
     let outputScreen = document.querySelector("#output");
     let memory;
     let operator;
-    let output;
-    // let equalsOut;
     
     function outputValue(event){
         // Clears out screen when new number is pressed
@@ -87,19 +85,6 @@
         }
         outputScreen.innerText += event.target.numValue;
     }
-
-    // check to see if an operator is already saved
-        //if there is one saved
-            // take firstValue, OPERATOR, value in screen and evaluate
-            // save this evaluation into firstValue
-            // save NEW operator button pressed into operator
-            // display value above and Clear screen on new number entry
-
-
-    // if no operator is saved
-        // save value in display
-        // save operator
-        // clear display
 
     let a;
     let b;
@@ -155,18 +140,8 @@
                 return firstValue;
         }
     }
-    
-
-
-
-
     // When a user clicks an action button, check for the following:
 
     //\/     If there's nothing in memory and they didn't press =, store the current value in memory and then clear the screen to allow them to input the next number.
-
-    //     If something is in memory, perform the previous action and display that value on the screen. When they press a new button, clear the screen to allow them to start typing a new number.
-    //     If '=' is pressed, show the value of the last action pressed.
-    //     If 'CE' is pressed, clear out the div but keep the chain of actions in memory.
-    //     If 'C' is pressed, clear out memory and start from scratch.
 
     // BONUS - Allow a user to push either the numpad or the actual numbers on the keyboard to use the calculator if they don't want to click buttons. This Site will help with this.
